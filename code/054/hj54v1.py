@@ -11,22 +11,23 @@ def get_c_list(s):
     c_list = []
     num = ''
     for i,once in enumerate(s):
-    	# -号出现在开头,那么就是负数
+        # -号出现在开头,那么就是负数
         if i == 0 and once == '-':
             num = '-'
             continue
         # -号出现在(之后,那么就是负数
         if once == '-' and s[i-1] == '(':
             num = '-'
-        elif is_num(once):
+            continue
+        if once.isdigit():
             num += once
         else:
             if num != '':
-                c_list.append(num)
+                c_list.append(int(num))
             c_list.append(once)
             num = ''
     if num != '':
-        c_list.append(num)
+        c_list.append(int(num))
     return c_list
 
 # 输入3个元素，x,y为数字，o为+-*/,输出计算结果。
@@ -124,7 +125,7 @@ def cal_end(c_list):
     return c_list[0]
 
 # 计算主函数
-def cal_num(s):
+def cal(s):
     c_list = get_c_list(s)
     c_list = cal_op1_all(c_list) #计算乘法除法
     c_list = cal_k_all(c_list) #计算括号
@@ -133,5 +134,4 @@ def cal_num(s):
 
 if __name__ == '__main__':
     s = input()
-    ret = cal_num(s)
-    print(ret)
+    print(cal(s))
