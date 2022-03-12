@@ -1,3 +1,6 @@
+# https://www.nowcoder.com/ta/huawei
+# HJ14
+
 count = int(input())
 c_list = []
 max_len = 0
